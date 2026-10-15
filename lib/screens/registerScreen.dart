@@ -27,7 +27,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _password.dispose();
     _confirm.dispose();
     _name.dispose();
-
     super.dispose();
   }
 
@@ -43,7 +42,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthSuccess) {
-            // Home appears automatically from the StreamBuilder in main
             Navigator.popUntil(context, (route) => route.isFirst);
           } else if (state is AuthError) {
             ScaffoldMessenger.of(context)

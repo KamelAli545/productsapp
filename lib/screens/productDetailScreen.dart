@@ -85,7 +85,7 @@ class ProductDetailScreen extends StatelessWidget {
             const SizedBox(height: 12),
 
             Text(
-              '\$${price.toStringAsFixed(0)}',
+              '\$${price.toStringAsFixed(2)}',
               style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             if (oldPrice != null)
@@ -102,7 +102,9 @@ class ProductDetailScreen extends StatelessWidget {
                   const SizedBox(width: 6),
                   Text(
                     '${discount.round()}%Off',
-                    style: const TextStyle(fontSize: 13, color: Color.fromRGBO(250, 113, 137, 1)),
+                    style: const TextStyle(
+                        fontSize: 13,
+                        color: Color.fromRGBO(250, 113, 137, 1)),
                   ),
                 ],
               ),

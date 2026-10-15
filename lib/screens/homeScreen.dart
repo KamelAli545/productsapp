@@ -19,17 +19,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final searchController = TextEditingController();
   String searchQuery = '';
-  List<ProductsModel>products = [];
   int _selectedTab=0;
 
   @override
   void dispose() {
     searchController.dispose();
-    setState(() {
-    });
     super.dispose();
   }
   void _selectTab(int index) {

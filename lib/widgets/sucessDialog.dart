@@ -10,9 +10,9 @@ class SucessDialog extends StatefulWidget {
 }
 
 class _SucessDialogState extends State<SucessDialog> {
+  @override
   void initState() {
     super.initState();
-    // يقفل الـ dialog بعد انتهاء الأنيميشن
     Future.delayed(const Duration(milliseconds: 2500), () {
       if (mounted) Navigator.of(context).pop();
     });
@@ -28,7 +28,7 @@ class _SucessDialogState extends State<SucessDialog> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Lottie.asset(
-              'assets/aminations/success.json', // غيّر الاسم لاسم ملفك
+              'assets/aminations/success.json',
               width: 180,
               height: 180,
               repeat: false,

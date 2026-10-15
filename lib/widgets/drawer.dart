@@ -22,7 +22,7 @@ class AppDrawer extends StatelessWidget {
               accountName: Text(
                 user?.displayName ?? 'guest',
               style: TextStyle(
-                color: Colors.red
+                color: Colors.black
               ),
               ),
               accountEmail: Text(user?.email ?? '',
@@ -59,9 +59,13 @@ class AppDrawer extends StatelessWidget {
               leading: const Icon(Icons.logout, color: Colors.red),
               title: const Text('Log out', style: TextStyle(color: Colors.red)),
               onTap: () async {
-                Navigator.pop(context);
-                context.read<CartProvider>().clearCart();
-                await context.read<AuthCubit>().logout();
+                final navigator = Navigator.of(context);
+                final cart = context.read<CartProvider>();
+                final auth = context.read<AuthCubit>();
+
+                navigator.popUntil((route) => route.isFirst); // يقفل الـ drawer وكل الشاشات فوق
+                cart.clearCart();
+                await auth.logout();
               },
             ),
           ],
