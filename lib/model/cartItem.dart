@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:productsapp/productModel.dart';
+import 'package:productsapp/model/productModel.dart';
 
 class CartItem {
    final ProductsModel product;

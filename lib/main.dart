@@ -1,34 +1,42 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:productsapp/cartItem.dart';
-import 'package:productsapp/homeScreen.dart';
-import 'package:productsapp/products_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:productsapp/firebase_options.dart';
+import 'package:productsapp/productTab.dart';
 import 'package:provider/provider.dart';
+import 'package:productsapp/cubit/auth_cubit.dart';
+import 'package:productsapp/cubit/products_cubit.dart';
+import 'package:productsapp/model/cartItem.dart';
+import 'package:productsapp/screens/splash_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        BlocProvider(create: (_) => AuthCubit()),
         BlocProvider(
-          create: (_) =>
-          ProductsCubit()
-            ..loadProducts(),
+          create: (_) => ProductsCubit()..loadProducts(productTabs.first),
         ),
-        ChangeNotifierProvider(
-          create: (_) => CartProvider()
-        ),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+        theme: ThemeData(
+          colorSchemeSeed: const Color(0xFF1B2333),
+          useMaterial3: true,
+        ),
+        home: const SplashScreen(),
       ),
     );
   }

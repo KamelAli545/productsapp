@@ -1,4 +1,4 @@
-import 'package:productsapp/productModel.dart';
+import 'package:productsapp/model/productModel.dart';
 
 class Products {
   Products({

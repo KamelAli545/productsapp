@@ -5,9 +5,9 @@ class Dimensions {
       this.depth,});
 
   Dimensions.fromJson(dynamic json) {
-    width = json['width'];
-    height = json['height'];
-    depth = json['depth'];
+    width = (json['width'] as num?)?.toDouble();
+    height = (json['height'] as num?)?.toDouble();
+    depth = (json['depth'] as num?)?.toDouble();
   }
   double? width;
   double? height;

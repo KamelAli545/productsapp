@@ -1,6 +1,6 @@
-import 'Dimensions.dart';
-import 'Reviews.dart';
-import 'Meta.dart';
+import 'package:productsapp/model/Dimensions.dart';
+import 'package:productsapp/model/Reviews.dart';
+import 'package:productsapp/model/Meta.dart';
 
 class ProductsModel {
   ProductsModel({
@@ -32,9 +32,9 @@ class ProductsModel {
     title = json['title'];
     description = json['description'];
     category = json['category'];
-    price = json['price'];
-    discountPercentage = json['discountPercentage'];
-    rating = json['rating'];
+    price = (json['price'] as num?)?.toDouble();
+    discountPercentage = (json['discountPercentage'] as num?)?.toDouble();
+    rating = (json['rating'] as num?)?.toDouble();
     stock = json['stock'];
     tags = json['tags'] != null ? json['tags'].cast<String>() : [];
     brand = json['brand'];
