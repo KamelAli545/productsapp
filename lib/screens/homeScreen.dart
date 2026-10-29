@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:productsapp/model/cartItem.dart';
 import 'package:productsapp/productTab.dart';
 import 'package:productsapp/screens/cartScreen.dart';
 import 'package:productsapp/screens/productDetailScreen.dart';
-import 'package:productsapp/model/productModel.dart';
 import 'package:productsapp/cubit/products_cubit.dart';
 import 'package:productsapp/widgets/categoryRow.dart';
 import 'package:productsapp/widgets/productCard.dart';
 import 'package:productsapp/widgets/drawer.dart';
+import 'package:productsapp/widgets/productSkeleton.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -94,8 +95,17 @@ class _HomeScreenState extends State<HomeScreen> {
               child: BlocBuilder<ProductsCubit, ProductsState>(
                 builder: (context, state) {
                   if (state is ProductsLoading) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
+                    return GridView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                      itemCount: 6,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 14,
+                        crossAxisSpacing: 12,
+                        childAspectRatio: 0.5,
+                      ),
+                      itemBuilder: (_, __) => const ProductSkeleton(),
+                    );                        }
                   if (state is ProductsError) {
                     return Center(child: Text(state.message));
                   }
@@ -110,28 +120,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         crossAxisCount: 2,
                         mainAxisSpacing: 14,
                         crossAxisSpacing: 12,
-                        childAspectRatio: 0.62,
+                        childAspectRatio:0.5,
                       ),
-                      itemBuilder: (context, index) {
-                        final p = state.products[index];
-                        final price = p.price ?? 0;
-                        final discount = p.discountPercentage ?? 0;
-                        return ProductCard(
-                          imageUrl: p.thumbnail ?? '',
-                          title: p.title ?? 'No title',
-                          description: p.description ?? '',
-                          price: price,
-                          rating: p.rating ?? 0,
-                          oldPrice: discount > 0 ? price / (1 - discount / 100) : null,
-                          discountLabel: discount > 0 ? '${discount.round()}%Off' : null,
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => ProductDetailScreen(products: p),
-                            ),
-                          ),
-                        );
-                      },
+                      itemBuilder: (context, index) =>
+                          ProductCard(
+                            product: state.products[index]).
+                          animate(delay: (index <8?index*80:0).ms)
+                              .fadeIn()
+                              .slideY(begin: 0.2,),
                     );
                   }
                   return const SizedBox.shrink();

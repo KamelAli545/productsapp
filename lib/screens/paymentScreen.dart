@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:productsapp/screens/cardPaymentScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:productsapp/model/cartItem.dart';
 import 'package:productsapp/widgets/sucessDialog.dart';
@@ -27,7 +28,7 @@ class PaymentScreen extends StatefulWidget {
     required this.itemCount,
   });
 
-  final double total; // إجمالي بعد الخصم
+  final double total;
   final int itemCount;
 
   @override
@@ -38,7 +39,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
   int _selected = 0;
   bool _placing = false;
 
-  /// السعر الأصلي قبل الخصم لكل المنتجات
   double _originalTotal(List<CartItem> items) {
     double sum = 0;
     for (final item in items) {
@@ -111,7 +111,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
           const SizedBox(height: 12),
           for (var i = 0; i < _methods.length; i++) ...[
             InkWell(
-              onTap: () => setState(() => _selected = i),
+              onTap: (){ setState(() => _selected = i);
+              if (_methods[i].name == 'Visa') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const CardPaymentScreen()),
+                );
+              }
+    },
               borderRadius: BorderRadius.circular(8),
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),

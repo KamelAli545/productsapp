@@ -19,7 +19,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _password = TextEditingController();
   final _name = TextEditingController();
   final _confirm = TextEditingController();
-  bool _hide=true;
 
   @override
   void dispose() {

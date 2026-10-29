@@ -54,18 +54,29 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Container(
-                width: double.infinity,
-                height: 300,
-                color: const Color(0xFFF3F4F6),
-                child: Image.network(
-                  p.thumbnail ?? '',
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => const Center(
-                    child: Icon(Icons.image_not_supported_outlined,
-                        size: 48, color: Colors.grey),
+            Center(
+              child: SizedBox(
+                width: 200,
+                child: AspectRatio(
+                  aspectRatio: 2/3,
+                  child: Hero(
+                    tag: 'product-poster-${p.id}',
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Container(
+                        width: double.infinity,
+                        height: 300,
+                        color: const Color(0xFFF3F4F6),
+                        child: Image.network(
+                          p.thumbnail ?? '',
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => const Center(
+                            child: Icon(Icons.image_not_supported_outlined,
+                                size: 48, color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
