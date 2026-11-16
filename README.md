@@ -4,7 +4,7 @@ A Flutter app that lists products fetched from the DummyJSON API, with live sear
 
 ## Screenshots
 
-
+![Stylish Showcase](screenshots/stylish_showcase_HD_8000.png)
 ## Features
 - Two-column product grid on the home screen
 - Live search by product name
