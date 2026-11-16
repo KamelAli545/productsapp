@@ -1,16 +1,37 @@
-# productsapp
+# Products App
 
-A new Flutter project.
+A Flutter app that lists products fetched from the DummyJSON API, with live search, product details, and a shopping cart.
+
+## Screenshots
+
+
+## Features
+- Two-column product grid on the home screen
+- Live search by product name
+- Product details screen
+- Shopping cart: add, remove, and change quantity
+- State management with Cubit (cart with Provider)
+
+## Tech Stack
+- Flutter & Dart
+- flutter_bloc (Cubit)
+- Provider (cart)
+- dio (HTTP client)
+- API: [DummyJSON](https://dummyjson.com/products)
 
 ## Getting Started
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/KamelAli545/productsapp.git
+   ```
+2. Install dependencies:
+   ```bash
+   flutter pub get
+   ```
+3. Run the app:
+   ```bash
+   flutter run
+   ```
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Author
+Kamel Ali Kamel · [LinkedIn](https://linkedin.com/in/kamel-ali03) · [GitHub](https://github.com/KamelAli545)
